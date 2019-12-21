@@ -15,6 +15,7 @@ class MapViewController: UIViewController {
     var place = Place()
     let annotationIdentifier = "annotationIdentifier"
     let locationManager = CLLocationManager()
+    let regionInMeters = 10000.0
     
     @IBOutlet var mapView: MKMapView!
     
@@ -25,6 +26,14 @@ class MapViewController: UIViewController {
         checkLocationServices()
     }
     
+    @IBAction func centerViewByUserLocation() {
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion(center: location,
+                                            latitudinalMeters: regionInMeters,
+                                            longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
+        }
+    }
     
     @IBAction func closeVC() {
         dismiss(animated: true)
@@ -64,14 +73,14 @@ class MapViewController: UIViewController {
             setupLocationManager()
             checkLocationAuthorisation()
         } else {
-            showAlert() //Show alert controller
+            showAlert(title: "Location Services are Disabled",
+                      message: "To enable it go: Settings -> Privacy -> Location settings") //Show alert controller
         }
     }
     
-    private func showAlert() {
-        let alertController = UIAlertController(title: "Location Permissions", message:
-            "Need location to show your positions", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+    private func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message:message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
 
         self.present(alertController, animated: true, completion: nil)
     }
@@ -87,13 +96,15 @@ class MapViewController: UIViewController {
             mapView.showsUserLocation = true
             break
         case .denied:
-            showAlert() //Show alert controller
+            showAlert(title: "Your Location is not Available",
+                      message: "To give permissions go to: Settings -> MyPlaces -> location") //Show alert controller
             break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             break
         case .restricted:
-            showAlert() //Show alert controller
+            showAlert(title: "Your Location is not Available",
+                      message: "To give permissions go to: Settings -> MyPlaces -> location") //Show alert controller
             break
         case .authorizedAlways:
             break

@@ -126,6 +126,7 @@ class NewPlaceTableViewController: UITableViewController {
             placeLocation.text = currentPlace?.location
             placeType.text = currentPlace?.type
             cosmosView.rating = currentPlace.rating
+            currentRating = currentPlace.rating
         }
     }
     
