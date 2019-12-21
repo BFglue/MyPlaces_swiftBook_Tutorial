@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9U6-v6-3kI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9U6-v6-3kI">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,12 +29,25 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="7sg-2W-i9m">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="250.00000000000006"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRF-3H-g8i">
+                                                    <rect key="frame" x="331" y="179" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="16t-Rh-Q5T"/>
+                                                        <constraint firstAttribute="width" constant="50" id="CWP-mN-MPZ"/>
+                                                    </constraints>
+                                                    <state key="normal" image="map"/>
+                                                    <connections>
+                                                        <segue destination="yWK-ap-tJZ" kind="presentation" identifier="showMap" id="xgK-l4-U5h"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="7sg-2W-i9m" secondAttribute="bottom" id="GhV-kV-M94"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="RRF-3H-g8i" secondAttribute="trailing" constant="13" id="aZR-jj-leE"/>
                                                 <constraint firstAttribute="trailing" secondItem="7sg-2W-i9m" secondAttribute="trailing" id="gbf-2l-aY9"/>
                                                 <constraint firstItem="7sg-2W-i9m" firstAttribute="leading" secondItem="C7L-eu-PqJ" secondAttribute="leading" id="gjj-qk-V4j"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="RRF-3H-g8i" secondAttribute="bottom" constant="10" id="hTL-Sr-L9z"/>
                                                 <constraint firstItem="7sg-2W-i9m" firstAttribute="top" secondItem="C7L-eu-PqJ" secondAttribute="top" id="yma-vG-afh"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -167,7 +180,7 @@
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="starSize">
-                                                            <real key="value" value="30"/>
+                                                            <integer key="value" value="30"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="emptyBorderWidth">
                                                             <real key="value" value="1"/>
@@ -223,6 +236,48 @@
             </objects>
             <point key="canvasLocation" x="917.39130434782612" y="71.651785714285708"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="6Nl-CD-j3c">
+            <objects>
+                <viewController id="yWK-ap-tJZ" customClass="MapViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pav-5V-G7Q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-lc-Jw0" customClass="Map">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YbU-Me-4lf">
+                                <rect key="frame" x="344" y="40" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="3gt-nl-c1N"/>
+                                    <constraint firstAttribute="width" constant="30" id="bxy-sz-lX9"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="camcel"/>
+                                <connections>
+                                    <action selector="closeVC" destination="yWK-ap-tJZ" eventType="touchUpInside" id="jxy-fI-76m"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="YbU-Me-4lf" firstAttribute="top" secondItem="MVr-LV-TNh" secondAttribute="top" constant="40" id="HVX-uF-OLH"/>
+                            <constraint firstItem="nW8-lc-Jw0" firstAttribute="leading" secondItem="MVr-LV-TNh" secondAttribute="leading" id="Jwl-ne-ezs"/>
+                            <constraint firstItem="MVr-LV-TNh" firstAttribute="trailing" secondItem="YbU-Me-4lf" secondAttribute="trailing" constant="40" id="TwD-lQ-59k"/>
+                            <constraint firstItem="nW8-lc-Jw0" firstAttribute="top" secondItem="pav-5V-G7Q" secondAttribute="top" id="VpE-vN-uMu"/>
+                            <constraint firstItem="nW8-lc-Jw0" firstAttribute="trailing" secondItem="MVr-LV-TNh" secondAttribute="trailing" id="xEc-yF-Mbb"/>
+                            <constraint firstAttribute="bottom" secondItem="nW8-lc-Jw0" secondAttribute="bottom" id="z46-eo-eHD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MVr-LV-TNh"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="nW8-lc-Jw0" id="gKS-f8-EfQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V7J-n9-f1t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1846.376811594203" y="71.651785714285708"/>
+        </scene>
         <!--My Places-->
         <scene sceneID="dYc-x4-Vcc">
             <objects>
@@ -274,7 +329,6 @@
                                                 </stackView>
                                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="90" placeholderIntrinsicHeight="14" translatesAutoresizingMaskIntoConstraints="NO" id="gGc-Bn-tWM" customClass="CosmosView" customModule="Cosmos">
                                                     <rect key="frame" x="316" y="35.5" width="90" height="14"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="IME-JD-L0Z"/>
                                                     </constraints>
@@ -282,8 +336,6 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="starSize">
                                                             <real key="value" value="14"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="filledImage" value="filledStar"/>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="emptyStar"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -399,8 +451,8 @@
     <resources>
         <image name="AZ" width="25" height="24"/>
         <image name="Photo" width="195" height="196"/>
-        <image name="emptyStar" width="255" height="256"/>
-        <image name="filledStar" width="237.5" height="238"/>
+        <image name="camcel" width="128" height="128"/>
+        <image name="map" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="RYI-NB-rEY"/>
