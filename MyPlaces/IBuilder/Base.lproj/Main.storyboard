@@ -524,8 +524,8 @@
         <image name="GetDirection" width="50" height="50"/>
         <image name="Photo" width="195" height="196"/>
         <image name="location" catalog="system" width="64" height="56"/>
-        <image name="map" width="50" height="50"/>
         <image name="map" catalog="system" width="64" height="56"/>
+        <image name="map" width="50" height="50"/>
         <image name="mappin" catalog="system" width="52" height="64"/>
         <image name="xmark" catalog="system" width="64" height="56"/>
     </resources>
